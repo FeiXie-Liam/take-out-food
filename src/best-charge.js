@@ -12,7 +12,10 @@ function bestCharge(selectedItems) {
 
   order = new Order(orderItems);
 
-  console.log(order.getTotalPrice());
+  let promotedInfo = order.getPromotedInfo();
+
+  console.log(order);
+  console.log(order.getPromotedInfo());
   return /*TODO*/;
 }
 
