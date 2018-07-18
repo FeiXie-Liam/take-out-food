@@ -1,9 +1,22 @@
+const OrderItem = require('./orderItem')
+const Order = require('./order')
 function bestCharge(selectedItems) {
   let itemsCount = getItemsCount(selectedItems);
+
+  let ids = Object.keys(itemsCount);
+  let orderItems = []
+  for (let i = 0; i < ids.length; ++i) {
+    let orderItem = new OrderItem(ids[i], itemsCount[ids[i]]);
+    orderItems.push(orderItem);
+  }
+
+  order = new Order(orderItems);
+
+  console.log(order.getTotalPrice());
   return /*TODO*/;
 }
 
-function getItemsCount(inputs){
+function getItemsCount(inputs) {
   let itemsCount = new Map()
   inputs.forEach(item => {
     splitedItem = item.split(' x ');
@@ -13,6 +26,6 @@ function getItemsCount(inputs){
 }
 
 module.exports = {
-  bestCharge:bestCharge,
-  getItemsCount:getItemsCount
+  bestCharge: bestCharge,
+  getItemsCount: getItemsCount
 }

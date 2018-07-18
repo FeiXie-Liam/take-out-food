@@ -1,4 +1,5 @@
 const best_charge = require('../src/best-charge')
+const OrderItem = require('../src/orderItem')
 
 describe('Take out food', function () {
 
@@ -54,6 +55,18 @@ describe('Take out food', function () {
     expectedOutput["ITEM0013"] = 4;
     expectedOutput["ITEM0022"] = 1;
     expect(realOutput).toEqual(expectedOutput);
+  })
+
+  it('should get order item given item count.', () => {
+    let orderItem = new OrderItem("ITEM0013", 4);
+    expect(orderItem.id).toEqual('ITEM0013');
+    expect(orderItem.name).toEqual('肉夹馍');
+    expect(orderItem.price).toEqual(6);
+    expect(orderItem.count).toEqual(4);
+  })
+
+  it('should return promote info given order items', ()=>{
+    
   })
 
 });
