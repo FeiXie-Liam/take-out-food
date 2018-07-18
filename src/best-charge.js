@@ -12,11 +12,9 @@ function bestCharge(selectedItems) {
 
   order = new Order(orderItems);
 
-  let promotedInfo = order.getPromotedInfo();
+  let result = order.printOrder();
 
-  console.log(order.getTotalPrice());
-  console.log(order.getPromotedInfo());
-  return /*TODO*/;
+  return result;
 }
 
 function getItemsCount(inputs) {

@@ -30,4 +30,21 @@ module.exports = class Order {
     }
     return new PromotionInfo(promotions[1].type + "(黄焖鸡，凉皮)", specHalfPrice);
   }
+
+  printOrder() {
+    let msg = "============= 订餐明细 =============\n";
+    this.orderItems.forEach(orderItem => {
+      msg += `${orderItem.name} x ${orderItem.count} = ${orderItem.price * orderItem.count}元\n`;
+    })
+    let promotedInfo = this.getPromotedInfo();
+    if (promotedInfo.price !== 0) {
+      msg += '-----------------------------------\n';
+      msg += '使用优惠:\n';
+      msg += `${promotedInfo.type}，省${promotedInfo.price}元\n`;
+    }
+    msg += '-----------------------------------\n';
+    msg += `总计：${this.getTotalPrice() - promotedInfo.price}元\n`;
+    msg += '===================================';
+    return msg;
+  }
 }

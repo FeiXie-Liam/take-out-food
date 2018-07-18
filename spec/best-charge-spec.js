@@ -1,4 +1,4 @@
-const best_charge = require('../src/best-charge')
+const bestCharge = require('../src/best-charge')
 const OrderItem = require('../src/orderItem')
 const Order = require('../src/order')
 
@@ -13,7 +13,7 @@ describe('Take out food', function () {
 
   it('should generate best charge when best is 指定菜品半价', function () {
     let inputs = ["ITEM0001 x 1", "ITEM0013 x 2", "ITEM0022 x 1"];
-    let summary = bestCharge(inputs).trim();
+    let summary = bestCharge.bestCharge(inputs).trim();
     let expected = `
 ============= 订餐明细 =============
 黄焖鸡 x 1 = 18元
@@ -30,7 +30,7 @@ describe('Take out food', function () {
 
   it('should generate best charge when best is 满30减6元', function () {
     let inputs = ["ITEM0013 x 4", "ITEM0022 x 1"];
-    let summary = best_charge.bestCharge(inputs).trim();
+    let summary = bestCharge.bestCharge(inputs).trim();
     let expected = `
 ============= 订餐明细 =============
 肉夹馍 x 4 = 24元
@@ -46,7 +46,7 @@ describe('Take out food', function () {
 
   it('should generate best charge when no promotion can be used', function () {
     let inputs = ["ITEM0013 x 4"];
-    let summary = best_charge.bestCharge(inputs).trim();
+    let summary = bestCharge.bestCharge(inputs).trim();
     let expected = `
 ============= 订餐明细 =============
 肉夹馍 x 4 = 24元
@@ -58,7 +58,7 @@ describe('Take out food', function () {
 
   it('should get item count when input item\'s string.', () => {
     let inputs = ["ITEM0013 x 4", "ITEM0022 x 1"];
-    let realOutput = best_charge.getItemsCount(inputs)
+    let realOutput = bestCharge.getItemsCount(inputs)
     let expectedOutput = new Map();
     expectedOutput["ITEM0013"] = 4;
     expectedOutput["ITEM0022"] = 1;
