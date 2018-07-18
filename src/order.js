@@ -28,6 +28,6 @@ module.exports = class Order {
     if (fullReducePrice >= specHalfPrice) {
       return new PromotionInfo(promotions[0].type, fullReducePrice);
     }
-    return new PromotionInfo(promotions[1].type, specHalfPrice);
+    return new PromotionInfo(promotions[1].type + "(黄焖鸡，凉皮)", specHalfPrice);
   }
 }

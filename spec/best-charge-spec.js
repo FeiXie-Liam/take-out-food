@@ -1,7 +1,15 @@
 const best_charge = require('../src/best-charge')
 const OrderItem = require('../src/orderItem')
+const Order = require('../src/order')
 
 describe('Take out food', function () {
+  let order;
+  beforeEach(() => {
+    let orderItems = []
+    orderItems.push(new OrderItem("ITEM0013", 4));
+    orderItems.push(new OrderItem("ITEM0022", 1));
+    order = new Order(orderItems);
+  })
 
   it('should generate best charge when best is 指定菜品半价', function () {
     let inputs = ["ITEM0001 x 1", "ITEM0013 x 2", "ITEM0022 x 1"];
@@ -65,8 +73,14 @@ describe('Take out food', function () {
     expect(orderItem.count).toEqual(4);
   })
 
-  it('should return promote info given order items', ()=>{
-    
+  it('should return total price given order items', () => {
+    expect(order.getTotalPrice()).toEqual(32);
+  })
+
+  it('should return promotion info given order items', () => {
+    expect(order.getPromotedInfo().type).toEqual("满30减6元");
+    expect(order.getPromotedInfo().price).toEqual(6);
+
   })
 
 });
