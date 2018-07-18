@@ -48,10 +48,11 @@ describe('Take out food', function () {
   });
 
   it('should get item count when input item\'s string.', () => {
-    let inputs = ["ITEM0013 x 4"];
+    let inputs = ["ITEM0013 x 4", "ITEM0022 x 1"];
     let realOutput = best_charge.getItemsCount(inputs)
     let expectedOutput = new Map();
     expectedOutput["ITEM0013"] = 4;
+    expectedOutput["ITEM0022"] = 1;
     expect(realOutput).toEqual(expectedOutput);
   })
 
