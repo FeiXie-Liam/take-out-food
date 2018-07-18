@@ -3,12 +3,7 @@ const Order = require('./order')
 function bestCharge(selectedItems) {
   let itemsCount = getItemsCount(selectedItems);
 
-  let ids = Object.keys(itemsCount);
-  let orderItems = []
-  for (let i = 0; i < ids.length; ++i) {
-    let orderItem = new OrderItem(ids[i], itemsCount[ids[i]]);
-    orderItems.push(orderItem);
-  }
+  let orderItems = getOrderItems(itemsCount);
 
   order = new Order(orderItems);
 
@@ -24,6 +19,16 @@ function getItemsCount(inputs) {
     itemsCount[splitedItem[0]] = parseInt(splitedItem[1], 10);
   })
   return itemsCount;
+}
+
+function getOrderItems(itemsCount){
+  let ids = Object.keys(itemsCount);
+  let orderItems = []
+  for (let i = 0; i < ids.length; ++i) {
+    let orderItem = new OrderItem(ids[i], itemsCount[ids[i]]);
+    orderItems.push(orderItem);
+  }
+  return orderItems;
 }
 
 module.exports = {
